@@ -1,9 +1,16 @@
 const db = require('../config/dbConfig');
 
 module.exports = {
-    find
+    find,
+    findByDepartment
 }
 
-function find(){
+function find() {
     return db('users');
+}
+
+function findByDepartment(department) {
+    return db('users')
+    .select('*')
+    .where(department)
 }

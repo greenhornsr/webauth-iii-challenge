@@ -4,10 +4,20 @@ const authmw = require('../auth/auth-mw');
 const depart = require('../auth/department-authmw');
 
 router.get('/', authmw, depart, (req, res) => {
+    const {department} = req.activeUser
+    console.log(department)
     db.find()
     .then(users => {
-        users && users.department === 'ADMIN' ? res.status(200).json({success: true, users}):
-        // res.status(200).json({success: true, users === req.body.department})
+        users && req.activeUser.department === 'ADMIN' ? res.status(200).json({success: true, users}):
+        db.findByDepartment({department})
+        .then(sameDepartUsers => {
+            sameDepartUsers ? res.status(200).json({success: true, sameDepartUsers}):
+            res.status(400).json({success: false, message: 'sorry, no users matching your department.'})
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(403).json({message: 'no such luck!', err})
+        })
     })
     .catch(err => {
         res.status(500).json(errorRef(err))

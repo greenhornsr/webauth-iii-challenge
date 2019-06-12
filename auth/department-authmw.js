@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
-    const userByDepart = req.activeUser
-    if(userByDepart) {
-        if(userByDepart.department){
+    const {department} = req.activeUser
+    if(department) {
+        if(department){
             next()
         }else{
             req.status(403).json({message: `\nhammertime!  no department found for ${userByDepart.username}.\n`})
