@@ -10,10 +10,11 @@ exports.up = function(knex, Promise) {
 
         user
         .string('password')
-        .notNullable
+        .notNullable()
 
         user
         .string('department')
+        .notNullable()
 
         user
         .timestamp('createdAt')

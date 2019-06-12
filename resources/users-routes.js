@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const db = require('./users-model');
+const authmw = require('../auth/auth-mw');
 
-router.get('/', (req, res) => {
+router.get('/', authmw, (req, res) => {
     db.find()
     .then(users => {
         res.status(200).json({success: true, users})
