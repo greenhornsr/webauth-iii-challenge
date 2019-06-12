@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
 
         user
         .string('department')
-        .notNullable()
+        // .notNullable()
 
         user
         .timestamp('createdAt')

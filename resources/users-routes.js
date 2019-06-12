@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const db = require('./users-model');
 const authmw = require('../auth/auth-mw');
+const depart = require('../auth/department-authmw');
 
-router.get('/', authmw, (req, res) => {
+router.get('/', authmw, depart, (req, res) => {
     db.find()
     .then(users => {
-        res.status(200).json({success: true, users})
+        users && users.department === 'ADMIN' ? res.status(200).json({success: true, users}):
+        // res.status(200).json({success: true, users === req.body.department})
     })
     .catch(err => {
         res.status(500).json(errorRef(err))
