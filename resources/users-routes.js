@@ -6,7 +6,7 @@ const depart = require('../auth/department-authmw');
 
 router.get('/', authmw, depart, (req, res) => {
     const {department} = req.activeUser
-    department && department === 'ADMIN' ? 
+    department === 'ADMIN' ? 
     db.find()
     .then(users => {
         res.status(200).json({success: true, users})
