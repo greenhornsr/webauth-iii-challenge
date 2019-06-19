@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  /* background-color: #282c34; */
+  margin-left: 75%;
+  width: 20rem;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  border: 1px solid red;
+}
+
+.userinfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around
+}
